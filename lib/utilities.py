@@ -260,7 +260,7 @@ if __name__=="__main__":
     #print("is 91 * 99 palindrome? {}".format(is_palindrome(91 * 99)))
     print(n_primes(6))
     print(collatz_sequence(13))
-    f, s = factor(220)
+    f, s = factor(16)
     print("f = {0}, s= {1}".format(f, s))
     f, s = factor(284)
     print("f = {0}, s= {1}".format(f, s))
