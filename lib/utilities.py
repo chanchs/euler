@@ -80,23 +80,21 @@ def is_prime(n):
         return False
     elif n < 4:
         return True
-    elif n % 2 ==0:
+    elif n % 2 == 0:
         return False
     elif n < 9:
         return True
     elif n % 3 == 0:
         return False
     else:
-        r = math.floor(math.sqrt(n))
-        f = 5
-
-        while f <= r:
-            if n % f == 0:
+        r = int(math.floor(math.sqrt(n)))
+        d = 5
+        while d <= r:
+            if n % d == 0:
                 return False
-            if n % (f + 2) == 0:
+            if n % (d + 2) == 0:
                 return False
-            f += 6
-
+            d += 6
     return True
 
 
@@ -264,3 +262,4 @@ if __name__=="__main__":
     print("f = {0}, s= {1}".format(f, s))
     f, s = factor(284)
     print("f = {0}, s= {1}".format(f, s))
+    print(is_prime(1761))
