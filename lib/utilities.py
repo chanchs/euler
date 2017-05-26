@@ -10,15 +10,12 @@ def matrix_multiply(A, B):
     if cols_A != rows_B:
         print("Cannot multiply matrices")
         return
-
     C = [[0 for row in range(cols_B)] for col in range(rows_A)]
     #print(C)
-
     for i in range(rows_A):
         for j in range(cols_B):
             for k in range(cols_A):
                 C[i][j] += A[i][k] * B[k][j]
-
     return C
 
 
@@ -63,7 +60,6 @@ def sieve_of_eratosthenes(n):
         if P[i]:
             for j in range(i*i, n+1, i):
                 P[j] = False
-
     return P, sorted({k: v for k, v in enumerate(P) if v == True})
 
 
@@ -126,7 +122,6 @@ def is_palindrome(a):
     # limit to 32 bit integers for now
     l = int(math.log10(a)) + 1
     n = []
-
     for i in range(0, l):
         d = a % 10
         # if the last digit is 0, return false (0123210 = 123210)
@@ -146,14 +141,11 @@ def gcd_iterative(u, v):
         return v
     if v == 0:
         return u
-
     for shift in range(0, (u | v) & 1):
         u >>= 1
         v >>= 1
-
     while u & 1 == 0:
         u >>= 1
-
     while v != 0:
         while v & 1 == 0:
             v >>= 1
@@ -162,34 +154,26 @@ def gcd_iterative(u, v):
             t = v
             v = u
             u = t
-
         v = v - u
-
     return u << shift
 
 
 def gcd_recursive(u, v):
     if u == v:
         return u
-
     if u == 0:
         return v
-
     if v == 0:
         return u
-
     if ~u & 1:
         if v & 1:
             return gcd_recursive(u >> 1, v)
         else:
             return gcd_recursive(u >> 1, v >> 1) << 1
-
     if ~v & 1:
         return gcd_recursive(u, v >> 1)
-
     if u > v:
         return gcd_recursive((u -v ) >> 1, v)
-
     return gcd_recursive((v - u) >> 1, u)
 
 
@@ -243,6 +227,28 @@ def factor(n):
     return ff, sum(ff)
 
 
+def is_pandigital(n):
+    l = int(math.log(n, 10) + 1)
+    s = [False] * 10
+    if l > 9:
+        return False
+    number = n
+    #print("n = {0}, l = {1}".format(n, l))
+    for i in range(l):
+        digit = n % 10
+        n = int(n / 10)
+        #print(digit)
+        if not s[digit]:
+            s[digit] = True
+        else:
+            return False
+    #print("number = {0}, s = {1}".format(number, s))
+    if False in s[1:]:
+        return False
+    else:
+        return True
+
+
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -262,4 +268,8 @@ if __name__=="__main__":
     print("f = {0}, s= {1}".format(f, s))
     f, s = factor(284)
     print("f = {0}, s= {1}".format(f, s))
-    print(is_prime(1761))
+    print("is_prime(1761) {}".format(is_prime(1761)))
+    print("is_pandigital(123456789) {}".format(is_pandigital(123456789)))
+    print("is_pandigital(8372377817263) {}".format(is_pandigital(8372377817263)))
+    print("is_pandigital(3474002) {}".format(is_pandigital(3474002)))
+    print("is_pandigital(987654321) {}".format(is_pandigital(987654321)))
