@@ -2,6 +2,11 @@ import math
 
 
 def matrix_multiply(A, B):
+    """
+    :param A: first matrix 
+    :param B: second matrix
+    :return: product of A * B
+    """
     rows_A = len(A)
     cols_A = len(A[0])
     rows_B = len(B)
@@ -20,11 +25,20 @@ def matrix_multiply(A, B):
 
 
 def identity(size):
+    """
+    :param size: size of identity matrix to return 
+    :return: an identity matrix of size n
+    """
     size = range(size)
     return [[(i == j) * 1 for i in size] for j in size]
 
 
 def matrix_exponentiation(M, n):
+    """
+    :param M: Matrix 
+    :param n: exponent
+    :return: a matrix raised to n
+    """
     assert n >= 0 and int(n) == n, "power has to be non-negative integer"
     if(n == 0 or n == 1):
         return
@@ -95,6 +109,11 @@ def is_prime(n):
 
 
 def n_primes(n):
+    """
+    return n primes starting from 2
+    :param n: the number of primes to return
+    :return: returns alist of primes
+    """
     p = []
     p.append(2)
     p.append(3)
@@ -119,6 +138,11 @@ def n_primes(n):
 
 
 def is_palindrome(a):
+    """
+    check if a number is palindrome
+    :param a: the number to be checked
+    :return: true or false
+    """
     # limit to 32 bit integers for now
     l = int(math.log10(a)) + 1
     n = []
@@ -136,6 +160,12 @@ def is_palindrome(a):
 
 
 def gcd_iterative(u, v):
+    """
+    This guy has a bug
+    :param u: 
+    :param v: 
+    :return: 
+    """
     shift = 0
     if u == 0:
         return v
@@ -249,6 +279,33 @@ def is_pandigital(n):
         return True
 
 
+def get_digits(n):
+    """
+    :param n: number 
+    :return: returns the digits in number in revered order
+    """
+    s = []
+    l = int(math.log(n,10) + 1)
+    for i in range(l):
+        s.append(n % 10)
+        n = int(n / 10)
+    return s
+
+
+def rotate(n, ln):
+    """
+    :param n: the number to rotate 
+    :param ln: the log of the number (number of digits in the number)
+    :return: the number roatated (e.g.,  197, 971, and 719)
+    """
+    if not ln:
+        ln = int(math.log(10, n))
+    last = n % 10
+    mid = (n - last) / 10
+    rvalue = last * math.pow(10, ln) + mid
+    return int(rvalue)
+
+
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -273,3 +330,7 @@ if __name__=="__main__":
     print("is_pandigital(8372377817263) {}".format(is_pandigital(8372377817263)))
     print("is_pandigital(3474002) {}".format(is_pandigital(3474002)))
     print("is_pandigital(987654321) {}".format(is_pandigital(987654321)))
+    print("{}".format(get_digits(123456789)))
+    print("{}".format(get_digits(8372377817263)))
+    print("{}".format(get_digits(3474002)))
+    print("{}".format(get_digits(987654321)))

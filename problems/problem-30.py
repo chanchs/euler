@@ -21,6 +21,7 @@ if __name__=="__main__":
         if s == number:
             print(number)
             ts += s
+
     print("total = {}".format(ts))
     end = time.time()
     print("Completed in {0:.2}s".format(end - start))
