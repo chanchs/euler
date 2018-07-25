@@ -88,6 +88,8 @@ def is_prime(n):
     """
     if n == 1:
         return False
+    elif n < 0:
+        return False
     elif n < 4:
         return True
     elif n % 2 == 0:
@@ -137,23 +139,19 @@ def n_primes(n):
     return p
 
 
-def is_palindrome(a):
+def is_palindrome(n):
     """
     check if a number is palindrome
-    :param a: the number to be checked
+    :param n: the number to be checked
     :return: true or false
     """
-    # limit to 32 bit integers for now
-    l = int(math.log10(a)) + 1
-    n = []
-    for i in range(0, l):
-        d = a % 10
-        # if the last digit is 0, return false (0123210 = 123210)
-        if i == 0 and d == 0:
-            return False
-        n.append(d)
-        a = int(a / 10)
-    if n[:] == n[::-1]:
+    l = int(math.log10(n))
+    num = n
+    p = 0
+    for i in range(l, -1, -1):
+        p += int((num % 10)) * int(math.pow(10, i))
+        num = num // 10
+    if int(p) == int(n):
         return True
     else:
         return False
@@ -306,6 +304,46 @@ def rotate(n, ln):
     return int(rvalue)
 
 
+def convert_decimal_to_binary(n):
+    """
+    :param n: decimal number 
+    :return: binary (under a million)
+    """
+    b, num, iteration, num_2 = 0, 0, 0, 0
+    num = n
+    while num != 0:
+        num_2 = num % 2
+        #print("num = {0}, num_2 = {1}, iteration = {2}".format(num, num_2, iteration))
+        b += int(num_2 * math.pow(10, iteration))
+        num = int(num / 2)
+        iteration += 1
+    return b
+
+
+def unique_partitions(n):
+    p = [[]]
+    row = 0
+    k = 0
+    p[row].append(n)
+    while True:
+        print(p)
+        remaining_value = 0
+        print("row = {0} k = {1}".format(row, k))
+        while k >= 0 and p[row][k] == 1:
+            remaining_value += p[row][k]
+            k -= 1
+        if k < 0:
+            return
+        p[row][k] -= 1
+        remaining_value += 1
+        while remaining_value > p[row][k]:
+            p[row].append(p[k])
+            remaining_value = remaining_value - p[row][k]
+            k += 1
+        p[row].append(remaining_value)
+        k += 1
+        row += 1
+
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -316,15 +354,28 @@ if __name__=="__main__":
     #for i in P:
     #    print(i)
     print("is 1234567890 palindrome? {}".format(is_palindrome(1234567890)))
-    #print("is 123454321 palindrome? {}".format(is_palindrome(123454321)))
-    #print("is 12344321 palindrome? {}".format(is_palindrome(12344321)))
-    #print("is 91 * 99 palindrome? {}".format(is_palindrome(91 * 99)))
+    print("is 123454321 palindrome? {}".format(is_palindrome(123454321)))
+    print("is 12344321 palindrome? {}".format(is_palindrome(12344321)))
+    print("is 91 * 99 palindrome? {}".format(is_palindrome(91 * 99)))
+    print("is 1 palindrome? {}".format(is_palindrome(1)))
+    print("is 11 palindrome? {}".format(is_palindrome(11)))
+    print("is 101 palindrome? {}".format(is_palindrome(101)))
+    print("is 111 palindrome? {}".format(is_palindrome(111)))
+    print("is 1001 palindrome? {}".format(is_palindrome(1001)))
+    print("is 1 palindrome? {}".format(is_palindrome(1)))
+    print("is 2 palindrome? {}".format(is_palindrome(2)))
+    print("is 5 palindrome? {}".format(is_palindrome(5)))
+    print("is 7 palindrome? {}".format(is_palindrome(7)))
+    print("is 9 palindrome? {}".format(is_palindrome(9)))
     print(n_primes(6))
     print(collatz_sequence(13))
     f, s = factor(16)
     print("f = {0}, s= {1}".format(f, s))
     f, s = factor(284)
     print("f = {0}, s= {1}".format(f, s))
+    print("is prime(4) {}".format(is_prime(4)))
+    print("is prime(2) {}".format(is_prime(2)))
+    print("is prime(3) {}".format(is_prime(3)))
     print("is_prime(1761) {}".format(is_prime(1761)))
     print("is_pandigital(123456789) {}".format(is_pandigital(123456789)))
     print("is_pandigital(8372377817263) {}".format(is_pandigital(8372377817263)))
@@ -334,3 +385,9 @@ if __name__=="__main__":
     print("{}".format(get_digits(8372377817263)))
     print("{}".format(get_digits(3474002)))
     print("{}".format(get_digits(987654321)))
+    print(convert_decimal_to_binary(1000000))
+    print(convert_decimal_to_binary(585585))
+    print(is_palindrome(convert_decimal_to_binary(585585)))
+    print("partition of 2 {}".format(unique_partitions(2)))
+    print("partition of 2 {}".format(unique_partitions(3)))
+    print("partition of 2 {}".format(unique_partitions(4)))
