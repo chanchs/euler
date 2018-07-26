@@ -344,6 +344,15 @@ def unique_partitions(n):
         k += 1
         row += 1
 
+
+def get_nth_digit(n, position):
+    """
+    :param n: number (integer)
+    :param position: position to return
+    :return: integer at position
+    """
+    return n // 10**(int(math.log10(n) + 1) - position) % 10
+
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -388,6 +397,9 @@ if __name__=="__main__":
     print(convert_decimal_to_binary(1000000))
     print(convert_decimal_to_binary(585585))
     print(is_palindrome(convert_decimal_to_binary(585585)))
-    print("partition of 2 {}".format(unique_partitions(2)))
-    print("partition of 2 {}".format(unique_partitions(3)))
-    print("partition of 2 {}".format(unique_partitions(4)))
+    #print("partition of 2 {}".format(unique_partitions(2)))
+    #print("partition of 2 {}".format(unique_partitions(3)))
+    #print("partition of 2 {}".format(unique_partitions(4)))
+    print("12th digit of 125487956395214789 = {}".format(get_nth_digit(1234567890, 4)))
+    print("1st digit of 125487956395214789 = {}".format(get_nth_digit(1234567890, 1)))
+    print("2nd digit of 125487956395214789 = {}".format(get_nth_digit(1234567890, 2)))
