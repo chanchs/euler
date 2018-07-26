@@ -2,6 +2,11 @@ import math
 
 
 def matrix_multiply(A, B):
+    """
+    :param A: first matrix 
+    :param B: second matrix
+    :return: product of A * B
+    """
     rows_A = len(A)
     cols_A = len(A[0])
     rows_B = len(B)
@@ -10,24 +15,30 @@ def matrix_multiply(A, B):
     if cols_A != rows_B:
         print("Cannot multiply matrices")
         return
-
     C = [[0 for row in range(cols_B)] for col in range(rows_A)]
     #print(C)
-
     for i in range(rows_A):
         for j in range(cols_B):
             for k in range(cols_A):
                 C[i][j] += A[i][k] * B[k][j]
-
     return C
 
 
 def identity(size):
+    """
+    :param size: size of identity matrix to return 
+    :return: an identity matrix of size n
+    """
     size = range(size)
     return [[(i == j) * 1 for i in size] for j in size]
 
 
 def matrix_exponentiation(M, n):
+    """
+    :param M: Matrix 
+    :param n: exponent
+    :return: a matrix raised to n
+    """
     assert n >= 0 and int(n) == n, "power has to be non-negative integer"
     if(n == 0 or n == 1):
         return
@@ -63,7 +74,6 @@ def sieve_of_eratosthenes(n):
         if P[i]:
             for j in range(i*i, n+1, i):
                 P[j] = False
-
     return P, sorted({k: v for k, v in enumerate(P) if v == True})
 
 
@@ -80,27 +90,30 @@ def is_prime(n):
         return False
     elif n < 4:
         return True
-    elif n % 2 ==0:
+    elif n % 2 == 0:
         return False
     elif n < 9:
         return True
     elif n % 3 == 0:
         return False
     else:
-        r = math.floor(math.sqrt(n))
-        f = 5
-
-        while f <= r:
-            if n % f == 0:
+        r = int(math.floor(math.sqrt(n)))
+        d = 5
+        while d <= r:
+            if n % d == 0:
                 return False
-            if n % (f + 2) == 0:
+            if n % (d + 2) == 0:
                 return False
-            f += 6
-
+            d += 6
     return True
 
 
 def n_primes(n):
+    """
+    return n primes starting from 2
+    :param n: the number of primes to return
+    :return: returns alist of primes
+    """
     p = []
     p.append(2)
     p.append(3)
@@ -125,10 +138,14 @@ def n_primes(n):
 
 
 def is_palindrome(a):
+    """
+    check if a number is palindrome
+    :param a: the number to be checked
+    :return: true or false
+    """
     # limit to 32 bit integers for now
     l = int(math.log10(a)) + 1
     n = []
-
     for i in range(0, l):
         d = a % 10
         # if the last digit is 0, return false (0123210 = 123210)
@@ -143,19 +160,22 @@ def is_palindrome(a):
 
 
 def gcd_iterative(u, v):
+    """
+    This guy has a bug
+    :param u: 
+    :param v: 
+    :return: 
+    """
     shift = 0
     if u == 0:
         return v
     if v == 0:
         return u
-
     for shift in range(0, (u | v) & 1):
         u >>= 1
         v >>= 1
-
     while u & 1 == 0:
         u >>= 1
-
     while v != 0:
         while v & 1 == 0:
             v >>= 1
@@ -164,34 +184,26 @@ def gcd_iterative(u, v):
             t = v
             v = u
             u = t
-
         v = v - u
-
     return u << shift
 
 
 def gcd_recursive(u, v):
     if u == v:
         return u
-
     if u == 0:
         return v
-
     if v == 0:
         return u
-
     if ~u & 1:
         if v & 1:
             return gcd_recursive(u >> 1, v)
         else:
             return gcd_recursive(u >> 1, v >> 1) << 1
-
     if ~v & 1:
         return gcd_recursive(u, v >> 1)
-
     if u > v:
         return gcd_recursive((u -v ) >> 1, v)
-
     return gcd_recursive((v - u) >> 1, u)
 
 
@@ -245,6 +257,55 @@ def factor(n):
     return ff, sum(ff)
 
 
+def is_pandigital(n):
+    l = int(math.log(n, 10) + 1)
+    s = [False] * 10
+    if l > 9:
+        return False
+    number = n
+    #print("n = {0}, l = {1}".format(n, l))
+    for i in range(l):
+        digit = n % 10
+        n = int(n / 10)
+        #print(digit)
+        if not s[digit]:
+            s[digit] = True
+        else:
+            return False
+    #print("number = {0}, s = {1}".format(number, s))
+    if False in s[1:]:
+        return False
+    else:
+        return True
+
+
+def get_digits(n):
+    """
+    :param n: number 
+    :return: returns the digits in number in revered order
+    """
+    s = []
+    l = int(math.log(n,10) + 1)
+    for i in range(l):
+        s.append(n % 10)
+        n = int(n / 10)
+    return s
+
+
+def rotate(n, ln):
+    """
+    :param n: the number to rotate 
+    :param ln: the log of the number (number of digits in the number)
+    :return: the number roatated (e.g.,  197, 971, and 719)
+    """
+    if not ln:
+        ln = int(math.log(10, n))
+    last = n % 10
+    mid = (n - last) / 10
+    rvalue = last * math.pow(10, ln) + mid
+    return int(rvalue)
+
+
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -260,7 +321,16 @@ if __name__=="__main__":
     #print("is 91 * 99 palindrome? {}".format(is_palindrome(91 * 99)))
     print(n_primes(6))
     print(collatz_sequence(13))
-    f, s = factor(220)
+    f, s = factor(16)
     print("f = {0}, s= {1}".format(f, s))
     f, s = factor(284)
     print("f = {0}, s= {1}".format(f, s))
+    print("is_prime(1761) {}".format(is_prime(1761)))
+    print("is_pandigital(123456789) {}".format(is_pandigital(123456789)))
+    print("is_pandigital(8372377817263) {}".format(is_pandigital(8372377817263)))
+    print("is_pandigital(3474002) {}".format(is_pandigital(3474002)))
+    print("is_pandigital(987654321) {}".format(is_pandigital(987654321)))
+    print("{}".format(get_digits(123456789)))
+    print("{}".format(get_digits(8372377817263)))
+    print("{}".format(get_digits(3474002)))
+    print("{}".format(get_digits(987654321)))
