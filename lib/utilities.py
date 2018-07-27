@@ -245,6 +245,46 @@ def big_pow(b, e):
     return list(reversed(n))
 
 
+def generate_triangle_numbers(n):
+    tn = [0] * (n + 1)
+    for i in range(n + 1):
+        tn[i] = int(0.5 * i * (i + 1))
+    return tn
+
+
+def calculate_weight(word):
+    alphabet = {'A': 1,
+                'B': 2,
+                'C': 3,
+                'D': 4,
+                'E': 5,
+                'F': 6,
+                'G': 7,
+                'H': 8,
+                'I': 9,
+                'J': 10,
+                'K': 11,
+                'L': 12,
+                'M': 13,
+                'N': 14,
+                'O': 15,
+                'P': 16,
+                'Q': 17,
+                'R': 18,
+                'S': 19,
+                'T': 20,
+                'U': 21,
+                'V': 22,
+                'W': 23,
+                'X': 24,
+                'Y': 25,
+                'Z':26}
+    weight = 0
+    for i in range(len(word)):
+        weight += alphabet[word[i]]
+    return weight
+
+
 def factor(n):
     ff = []
     lim = int(math.sqrt(n))
@@ -274,6 +314,28 @@ def is_pandigital(n):
             return False
     #print("number = {0}, s = {1}".format(number, s))
     if False in s[1:]:
+        return False
+    else:
+        return True
+
+
+def is_09_pandigital(n):
+    l = int(math.log(n, 10) + 1)
+    s = [False] * 10
+    if l > 10:
+        return False
+    number = n
+    #print("n = {0}, l = {1}".format(n, l))
+    for i in range(l):
+        digit = n % 10
+        n = int(n / 10)
+        #print(digit)
+        if not s[digit]:
+            s[digit] = True
+        else:
+            return False
+    #print("number = {0}, s = {1}".format(number, s))
+    if False in s:
         return False
     else:
         return True
@@ -435,4 +497,6 @@ if __name__=="__main__":
     print("is_n_pandigital(123045) {}".format(is_n_pandigital(123045)))
     print("is_n_pandigital(523641) {}".format(is_n_pandigital(523641)))
     print("is_n_pandigital(1234567890123456789) {}".format(is_n_pandigital(1234567890123456789)))
-
+    print("is_09_pandigital(9012384756) {}".format(is_09_pandigital(9012384756)))
+    print("is_09_pandigital(9012384765) {}".format(is_09_pandigital(9012384765)))
+    print("is_09_pandigital(901256) {}".format(is_09_pandigital(901256)))
