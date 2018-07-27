@@ -98,6 +98,8 @@ def is_prime(n):
         return True
     elif n % 3 == 0:
         return False
+    elif n % 5 == 0:
+        return False
     else:
         r = int(math.floor(math.sqrt(n)))
         d = 5
@@ -277,6 +279,32 @@ def is_pandigital(n):
         return True
 
 
+def is_n_pandigital(n):
+    """
+    :param n: integer
+    :return: True if the number is n pandigital, false otherwise
+    """
+    l = int(math.log10(n) + 1)
+    s = [False] * (l + 1)
+    if l > 9:
+        return False
+    for i in range(l):
+        digit = n % 10
+        n = int(n / 10)
+        if digit > l:
+            return False
+        if digit == 0:
+            return False
+        if not s[digit]:
+            s[digit] = True
+        else:
+            return False
+    if False in s[1:]:
+        return False
+    else:
+        return True
+
+
 def get_digits(n):
     """
     :param n: number 
@@ -403,3 +431,8 @@ if __name__=="__main__":
     print("12th digit of 125487956395214789 = {}".format(get_nth_digit(1234567890, 4)))
     print("1st digit of 125487956395214789 = {}".format(get_nth_digit(1234567890, 1)))
     print("2nd digit of 125487956395214789 = {}".format(get_nth_digit(1234567890, 2)))
+    print("is_n_pandigital(12345) {}".format(is_n_pandigital(12345)))
+    print("is_n_pandigital(123045) {}".format(is_n_pandigital(123045)))
+    print("is_n_pandigital(523641) {}".format(is_n_pandigital(523641)))
+    print("is_n_pandigital(1234567890123456789) {}".format(is_n_pandigital(1234567890123456789)))
+
