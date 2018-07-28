@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8344b6a7-2aba-4327-9150-3ec78dfd3159" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/problems/problem-42.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/problems/problem-42.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/problems/problem-43.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities.py" afterDir="false" />
     </list>
     <ignored path="euler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,11 +34,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="problem-42.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="problem-42.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problems/problem-42.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+            <state>
+              <caret selection-end-line="3" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="problem-43.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/problems/problem-43.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -117,6 +127,7 @@
         <option value="$PROJECT_DIR$/problems/problem-42.txt" />
         <option value="$PROJECT_DIR$/problems/problem-42.py" />
         <option value="$PROJECT_DIR$/lib/utilities.py" />
+        <option value="$PROJECT_DIR$/problems/problem-43.py" />
       </list>
     </option>
   </component>
@@ -177,25 +188,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.utilities">
-    <configuration name="problem-39" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="euler" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/problems" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-39.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
+  <component name="RunManager" selected="Python.problem-43">
     <configuration name="problem-40" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="euler" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -245,6 +238,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-42.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="problem-43" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="euler" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/problems" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-43.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -330,18 +341,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.utilities" />
-      <item itemvalue="Python.problem-39" />
       <item itemvalue="Python.problem-40" />
       <item itemvalue="Python.problem-41" />
       <item itemvalue="Python.problem-42" />
+      <item itemvalue="Python.problem-43" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.problem-43" />
         <item itemvalue="Python.utilities" />
         <item itemvalue="Python.problem-42" />
         <item itemvalue="Python.problem-41" />
         <item itemvalue="Python.problem-40" />
-        <item itemvalue="Python.problem-39" />
       </list>
     </recent_temporary>
   </component>
@@ -396,7 +407,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1932" height="1027" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26610348" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -469,13 +479,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/problems/problem-20.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/problems/problem-21.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -720,9 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/problems/problem-11.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/problems/problem-42.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -737,10 +737,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/problems/problem-11.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/problems/problem-42.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        <state>
+          <caret selection-end-line="3" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problems/problem-43.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
