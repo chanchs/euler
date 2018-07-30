@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8344b6a7-2aba-4327-9150-3ec78dfd3159" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/problems/problem-44.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/problems/problem-45.py" afterDir="false" />
     </list>
     <ignored path="euler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,13 +33,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="problem-44.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="problem-44.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problems/problem-44.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state>
+              <caret selection-end-line="20" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="problem-45.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/problems/problem-45.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="63" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,10 +114,11 @@
         <option value="$PROJECT_DIR$/problems/problem-43.py" />
         <option value="$PROJECT_DIR$/lib/utilities.py" />
         <option value="$PROJECT_DIR$/problems/problem-44.py" />
+        <option value="$PROJECT_DIR$/problems/problem-45.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="527" />
@@ -164,25 +175,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem-44">
-    <configuration name="problem-41" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="euler" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/problems" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-41.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
+  <component name="RunManager" selected="Python.problem-45">
     <configuration name="problem-42" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="euler" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -232,6 +225,24 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-44.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="problem-45" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="euler" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/problems" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-45.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -317,18 +328,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.utilities" />
-      <item itemvalue="Python.problem-41" />
       <item itemvalue="Python.problem-42" />
       <item itemvalue="Python.problem-43" />
       <item itemvalue="Python.problem-44" />
+      <item itemvalue="Python.problem-45" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.problem-45" />
         <item itemvalue="Python.problem-44" />
         <item itemvalue="Python.problem-43" />
         <item itemvalue="Python.utilities" />
         <item itemvalue="Python.problem-42" />
-        <item itemvalue="Python.problem-41" />
       </list>
     </recent_temporary>
   </component>
@@ -456,9 +467,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/utilities.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/problems/problem-20.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -723,10 +731,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/problems/problem-44.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state>
+          <caret selection-end-line="20" />
           <folding>
             <element signature="e#1#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problems/problem-45.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="63" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
