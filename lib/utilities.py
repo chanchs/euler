@@ -341,6 +341,14 @@ def is_09_pandigital(n):
         return True
 
 
+def is_pentagonal(n):
+    N = (1 + math.sqrt(1 + 24 * n)) / 6
+    if N == int(N):
+        return True
+    else:
+        return False
+
+
 def is_n_pandigital(n):
     """
     :param n: integer
