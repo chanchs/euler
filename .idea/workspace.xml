@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8344b6a7-2aba-4327-9150-3ec78dfd3159" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/problems/problem-41.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/problems/problem-45.py" afterDir="false" />
     </list>
     <ignored path="euler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,29 +27,29 @@
       <file leaf-file-name="utilities.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2057">
-              <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
+            <state relative-caret-position="408">
+              <caret line="350" lean-forward="true" selection-start-line="350" selection-end-line="350" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="problem-40.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/problems/problem-40.py">
+      <file leaf-file-name="problem-44.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/problems/problem-44.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="30" column="53" selection-end-line="31" />
+            <state>
+              <caret selection-end-line="20" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#1#12#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="problem-41.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/problems/problem-41.py">
+      <file leaf-file-name="problem-45.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/problems/problem-45.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+            <state relative-caret-position="238">
+              <caret line="14" column="63" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -110,15 +108,20 @@
         <option value="$PROJECT_DIR$/problems/problem-38.py" />
         <option value="$PROJECT_DIR$/problems/problem-39.py" />
         <option value="$PROJECT_DIR$/problems/problem-40.py" />
-        <option value="$PROJECT_DIR$/lib/utilities.py" />
         <option value="$PROJECT_DIR$/problems/problem-41.py" />
+        <option value="$PROJECT_DIR$/problems/problem-42.txt" />
+        <option value="$PROJECT_DIR$/problems/problem-42.py" />
+        <option value="$PROJECT_DIR$/problems/problem-43.py" />
+        <option value="$PROJECT_DIR$/lib/utilities.py" />
+        <option value="$PROJECT_DIR$/problems/problem-44.py" />
+        <option value="$PROJECT_DIR$/problems/problem-45.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="1932" />
-    <option name="height" value="1027" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="527" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -172,8 +175,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.problem-41">
-    <configuration name="problem-38" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.problem-45">
+    <configuration name="problem-42" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="euler" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -185,13 +188,13 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-38.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-42.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="problem-39" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="problem-43" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="euler" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -203,13 +206,13 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-39.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-43.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="problem-40" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="problem-44" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="euler" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -221,13 +224,13 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-40.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-44.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="problem-41" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="problem-45" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="euler" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -239,7 +242,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-41.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/problems/problem-45.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -325,18 +328,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.utilities" />
-      <item itemvalue="Python.problem-38" />
-      <item itemvalue="Python.problem-39" />
-      <item itemvalue="Python.problem-40" />
-      <item itemvalue="Python.problem-41" />
+      <item itemvalue="Python.problem-42" />
+      <item itemvalue="Python.problem-43" />
+      <item itemvalue="Python.problem-44" />
+      <item itemvalue="Python.problem-45" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.problem-41" />
+        <item itemvalue="Python.problem-45" />
+        <item itemvalue="Python.problem-44" />
+        <item itemvalue="Python.problem-43" />
         <item itemvalue="Python.utilities" />
-        <item itemvalue="Python.problem-40" />
-        <item itemvalue="Python.problem-39" />
-        <item itemvalue="Python.problem-38" />
+        <item itemvalue="Python.problem-42" />
       </list>
     </recent_temporary>
   </component>
@@ -390,15 +393,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1932" height="1027" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26610348" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11643836" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32900432" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26145253" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25324675" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -415,22 +418,22 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26702127" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26145253" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Data View" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32900432" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26145253" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5753425" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32900432" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -464,33 +467,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/problems/problem-21.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4012">
-          <caret line="236" column="11" selection-start-line="236" selection-start-column="11" selection-end-line="236" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problems/problem-20.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/problems/problem-21.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utilities.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/problems/problem-20.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -691,9 +667,6 @@
     <entry file="file://$PROJECT_DIR$/problems/problem-13.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/problems/problem-11.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/problems/problem-16.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -718,17 +691,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utilities.py">
+    <entry file="file://$PROJECT_DIR$/problems/problem-41.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2057">
-          <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
+        <state>
+          <caret selection-end-line="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/problems/problem-41.py">
+    <entry file="file://$PROJECT_DIR$/problems/problem-42.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        <state>
+          <caret column="16345" selection-start-column="16345" selection-end-column="16345" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problems/problem-11.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problems/problem-42.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problems/problem-43.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="37" column="53" lean-forward="true" selection-end-line="37" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="350" lean-forward="true" selection-start-line="350" selection-end-line="350" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problems/problem-44.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="20" />
+          <folding>
+            <element signature="e#1#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problems/problem-45.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="63" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
