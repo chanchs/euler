@@ -287,7 +287,7 @@ def calculate_weight(word):
 
 def factor(n):
     ff = []
-    lim = int(math.sqrt(n))
+    lim = int(math.sqrt(n)) + 1
     ff.append(1)
     for d in range(2, lim):
         if n % d == 0:

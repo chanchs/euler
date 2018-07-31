@@ -4,7 +4,7 @@ import lib.utilities as ut
 
 if __name__ == "__main__":
     start = time.time()
-    p = ut.n_primes(1000)
+    p = ut.n_primes(800)
     key = False
     index = 0
     n = 9
