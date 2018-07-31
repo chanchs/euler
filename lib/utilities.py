@@ -112,11 +112,30 @@ def is_prime(n):
     return True
 
 
+def is_permutation(n1, n2):
+    if n1 == n2:
+        return False
+    l1 = int(math.log10(n1)) + 1
+    d1 = []
+    d2 = []
+    for k in range(l1):
+        d1.append(int(n1 % 10))
+        n1 = int(n1 / 10)
+        d2.append(int(n2 % 10))
+        n2 = int(n2 / 10)
+    d1.sort()
+    d2.sort()
+    if d1 == d2:
+        return True
+    else:
+        return False
+
+
 def n_primes(n):
     """
     return n primes starting from 2
     :param n: the number of primes to return
-    :return: returns alist of primes
+    :return: returns a list of primes
     """
     p = []
     p.append(2)
@@ -287,7 +306,7 @@ def calculate_weight(word):
 
 def factor(n):
     ff = []
-    lim = int(math.sqrt(n))
+    lim = int(math.sqrt(n)) + 1
     ff.append(1)
     for d in range(2, lim):
         if n % d == 0:
@@ -295,6 +314,28 @@ def factor(n):
             ff.append(d)
     ff.sort()
     return ff, sum(ff)
+
+
+def prime_factors(n, sorted=False, distinct=True):
+    limit = (int)(math.sqrt(n)) + 1
+    p = n_primes(limit)
+    if is_prime(n):
+        return [n]
+    ff = []
+    if n % p[0] == 0:
+        ff.append(p[0])
+        n = int(n / p[0])
+        if n in p:
+            ff.append(n)
+    for primes in p:
+        if n % primes == 0 and primes not in ff:
+            ff.append(primes)
+            n = int(n / primes)
+            if n in p and (n not in ff != distinct):
+                ff.append(n)
+    if sorted:
+        ff.sort()
+    return ff
 
 
 def is_pandigital(n):
@@ -436,8 +477,9 @@ def unique_partitions(n):
         remaining_value += 1
         while remaining_value > p[row][k]:
             p[row].append(p[k])
-            remaining_value = remaining_value - p[row][k]
             k += 1
+            remaining_value = remaining_value - p[row][k]
+            #k += 1
         p[row].append(remaining_value)
         k += 1
         row += 1
