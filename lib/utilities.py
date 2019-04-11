@@ -414,7 +414,7 @@ def is_n_pandigital(n):
         return True
 
 
-def get_digits(n, sorted=False):
+def get_digits(n):
     """
     :param n: number 
     :return: returns the digits in number in revered order
@@ -424,8 +424,6 @@ def get_digits(n, sorted=False):
     for i in range(l):
         s.append(n % 10)
         n = int(n / 10)
-    if sorted:
-        s.sort()
     return s
 
 
@@ -523,8 +521,9 @@ def get_digital_sum(n):
     l = int(math.log(n) + 1)
     for i in range(l):
         s += (n % 10)
-        n = n // 10   # integer division, fixes division of large numbers
+        n = int(n / 10)
     return s
+
 
 
 if __name__=="__main__":
