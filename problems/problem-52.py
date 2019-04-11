@@ -50,7 +50,6 @@ if __name__ == "__main__":
     a = 125874
     b = 251748
 
-    print(have_same_digits(a))
     E = False
     i = 0
     while not E:
