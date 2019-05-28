@@ -74,7 +74,7 @@ def sieve_of_eratosthenes(n):
         if P[i]:
             for j in range(i*i, n+1, i):
                 P[j] = False
-    return P, sorted({k: v for k, v in enumerate(P) if v == True})
+    return P, sorted({k: v for k, v in enumerate(P) if v is True})
 
 
 def is_prime(n):
@@ -156,7 +156,6 @@ def n_primes(n):
             i += 1
         if is_prime:
             p.append(m)
-
     return p
 
 
@@ -198,7 +197,6 @@ def gcd_iterative(u, v):
     while v != 0:
         while v & 1 == 0:
             v >>= 1
-
         if u > v:
             t = v
             v = u
@@ -429,6 +427,16 @@ def get_digits(n):
     return s
 
 
+def reverse(n):
+    l = int(math.log10(n)) + 1
+    m = 0
+    for i in range(l):
+        d = n % 10
+        n = int(n / 10)
+        m = m * 10 + d
+    return m
+
+
 def rotate(n, ln):
     """
     :param n: the number to rotate 
@@ -457,6 +465,14 @@ def convert_decimal_to_binary(n):
         num = int(num / 2)
         iteration += 1
     return b
+
+
+def nCr(n, r):
+    if r > n:
+        temp = r
+        r = n
+        n = temp
+    return math.factorial(n) // math.factorial(r) // math.factorial(n - r)
 
 
 def unique_partitions(n):
@@ -493,6 +509,23 @@ def get_nth_digit(n, position):
     """
     return n // 10**(int(math.log10(n) + 1) - position) % 10
 
+
+def get_digital_sum(n):
+    """
+    :param n: number
+    :return: returns the digits in number in revered order
+    """
+    if n == 0:
+        return 0
+    s = 0
+    l = int(math.log(n) + 1)
+    for i in range(l):
+        s += (n % 10)
+        n = int(n / 10)
+    return s
+
+
+
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -502,7 +535,7 @@ if __name__=="__main__":
     print(P)
     #for i in P:
     #    print(i)
-    print("is 1234567890 palindrome? {}".format(is_palindrome(1234567890)))
+    print("is 1234567890 verome? {}".format(is_palindrome(1234567890)))
     print("is 123454321 palindrome? {}".format(is_palindrome(123454321)))
     print("is 12344321 palindrome? {}".format(is_palindrome(12344321)))
     print("is 91 * 99 palindrome? {}".format(is_palindrome(91 * 99)))
@@ -550,3 +583,4 @@ if __name__=="__main__":
     print("is_09_pandigital(9012384756) {}".format(is_09_pandigital(9012384756)))
     print("is_09_pandigital(9012384765) {}".format(is_09_pandigital(9012384765)))
     print("is_09_pandigital(901256) {}".format(is_09_pandigital(901256)))
+    print(get_digital_sum(546812681195752981093125556779405341338292357723303109106442651602488249799843980805878294255763456))
