@@ -220,13 +220,46 @@ def gcd_recursive(u, v):
     if ~v & 1:
         return gcd_recursive(u, v >> 1)
     if u > v:
-        return gcd_recursive((u -v ) >> 1, v)
+        return gcd_recursive((u - v) >> 1, v)
     return gcd_recursive((v - u) >> 1, u)
 
 
+def gcd(u, v):
+    if u == v:
+        return u
+    if u == 0:
+        return v
+    if v == 0:
+        return u
+    if u > v:
+        n = v
+        d = u
+    else:
+        n = u
+        d = v
+    while d != 0:
+        r = d
+        d = n % d
+        n = r
+    return n
+
+
+def gcd1(u, v):
+    if u == 0:
+        return v
+    if v == 0:
+        return u
+
+    while v != 0:
+        if u > v:
+            u = u - v
+        else:
+            v = v - u
+    return u
+
+
 def collatz_sequence(n):
-    s = []
-    s.append(n)
+    s = [n]
     while n != 1:
         if ~n & 1:
             n = int(n / 2)
@@ -245,8 +278,7 @@ def binomial(n, k):
 
 
 def big_pow(b, e):
-    n = []
-    n.append(1)
+    n = [1]
     for i in range(e):
         carry = 0
         for index in range(len(n)):
@@ -315,7 +347,13 @@ def factor(n):
 
 
 def prime_factors(n, sorted=False, distinct=True):
-    limit = (int)(math.sqrt(n)) + 1
+    if n == 1:
+        return [1]
+    elif n == 2:
+        return [2]
+    elif n == 3:
+        return [3]
+    limit = int(math.sqrt(n))
     p = n_primes(limit)
     if is_prime(n):
         return [n]
@@ -323,13 +361,15 @@ def prime_factors(n, sorted=False, distinct=True):
     if n % p[0] == 0:
         ff.append(p[0])
         n = int(n / p[0])
-        if n in p:
+        if is_prime(n):
             ff.append(n)
     for primes in p:
         if n % primes == 0 and primes not in ff:
             ff.append(primes)
             n = int(n / primes)
             if n in p and (n not in ff != distinct):
+                ff.append(n)
+            elif is_prime(n) and (n not in ff != distinct):
                 ff.append(n)
     if sorted:
         ff.sort()
@@ -414,7 +454,7 @@ def is_n_pandigital(n):
         return True
 
 
-def get_digits(n, sorted=False):
+def get_digits(n):
     """
     :param n: number 
     :return: returns the digits in number in revered order
@@ -424,8 +464,6 @@ def get_digits(n, sorted=False):
     for i in range(l):
         s.append(n % 10)
         n = int(n / 10)
-    if sorted:
-        s.sort()
     return s
 
 
@@ -523,8 +561,127 @@ def get_digital_sum(n):
     l = int(math.log(n) + 1)
     for i in range(l):
         s += (n % 10)
-        n = n // 10   # integer division, fixes division of large numbers
+        n = int(n / 10)
     return s
+
+
+def primes_to(n):
+    """
+    return primes starting from 2 less than or equal to n
+    :param n: limit
+    :return: returns a list of primes
+    """
+    if n <= 1:
+        return 0
+    p = [2]
+    if n == 2:
+        return p
+    p.append(3)
+    if n == 3:
+        return p
+    m = p[-1]
+    while True:
+        m += 2
+        if m > n:
+            break
+        limit = int(math.sqrt(m))
+        i = 0
+        is_prime = True
+        while p[i] <= limit:
+            if m % p[i] == 0:
+                is_prime = False
+                break
+            i += 1
+        if is_prime:
+            p.append(m)
+    return p
+
+
+def phi(n, p=None):
+    """
+    Returns Eulers Totient function (This function has a bug)
+    :param n: number to calculate the totier for
+    :param p: a prime array up to square root of n, if not provided will create one
+    :return: the totient function
+    """
+    if n > 10:
+        limit = int(math.sqrt(n))
+    else:
+        limit = n
+    if not p:
+        p = primes_to(limit)
+    i = 0
+    _phi = 1
+    E = False
+    while not E:
+        if n % p[i] == 0:
+            _phi *= (1 - 1 / p[i])
+            temp = n * _phi
+        if p[i] >= n or len(p) - 1 == i:
+            E = True
+        i += 1
+    return int(n * _phi)
+
+
+def phi1(n, p=None):
+    """
+    Returns Eulers Totient function, faster implementation than phi(n, p)
+    :param n: number to calculate the totient for
+    :param p: a prime array up to square root of n, if not provided will create one
+    :return: the totient function
+    """
+    if n == 1:
+        return 1
+    if n < 10:
+        limit = n
+    else:
+        limit = int(math.sqrt(n)) + 1
+    if p is None:
+        p = prime_factors(limit)
+    _phi = n
+    i = 0
+    pr = p[i]
+    while i < len(p) - 1 and pr * pr <= n:
+        if n % pr ==0:
+            _phi = _phi - _phi / pr
+            while n % pr == 0:
+                n = n / pr
+        i += 1
+        pr = p[i]
+    if n > 1:
+        _phi = _phi - _phi / n
+    return _phi
+
+
+def phi2(N):
+    """
+    Returns an array with all totient numbers to N
+    :param N:  number to which to calculate phi
+    :return: array with totients
+    """
+    _phi = [0] * (N + 1)
+    for n in range(N + 1):
+        _phi[n] = n
+    for n in range(2, N + 1):
+        if _phi[n] == n:
+            for m in range(n, N + 1, n):
+                _phi[m] = _phi[m] - _phi[m] / n
+    return _phi
+
+
+def n_phi(n):
+    """
+    returns a ratio of n to phi(n)
+    :param n: number n
+    :param p: number of primes to square root on n, calculates if not provided
+    :return:
+    """
+    p = prime_factors(n)
+    print(p)
+    _n_phi = 1
+    for prime_factor in p:
+        _n_phi *= prime_factor / (prime_factor - 1)
+    return _n_phi
 
 
 if __name__=="__main__":
@@ -585,3 +742,15 @@ if __name__=="__main__":
     print("is_09_pandigital(9012384765) {}".format(is_09_pandigital(9012384765)))
     print("is_09_pandigital(901256) {}".format(is_09_pandigital(901256)))
     print(get_digital_sum(546812681195752981093125556779405341338292357723303109106442651602488249799843980805878294255763456))
+    print(primes_to(100))
+    print(len(primes_to(100)))
+    print(phi(2))
+    p = primes_to(100)
+    for i in range(2, 11):
+        print(i, phi1(i), phi1(i, p), phi(i, p))
+    for i in range(2, 11):
+        print(i, n_phi(i), n_phi(i))
+    p = primes_to(int(math.sqrt(87109)))
+    print(phi1(87109))
+    print(prime_factors(87109))
+    print(phi2(10))
