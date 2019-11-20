@@ -1,5 +1,6 @@
 import time
 
+# http://mathworld.wolfram.com/PartitionFunctionP.html
 
 if __name__ == "__main__":
     start = time.time()
