@@ -12,13 +12,13 @@ if __name__=="__main__":
 
     limit = int(math.sqrt(lt / 2))
 
-    for  m in range(2, limit):
+    for m in range(2, limit):
         if lt_2 % m == 0:
             if m %2 ==0:
                 k = m + 1
             else:
                 k = m + 2
-        while k < 2 * m and k <=  lt_2 / m:
+        while k < 2 * m and k <= lt_2 / m:
             if (lt_2 / m) % k == 0 and ut.gcd_recursive(k, m) == 1:
                 d = lt_2 / (k * m)
                 n = k - m
