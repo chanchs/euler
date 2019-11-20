@@ -6,9 +6,10 @@ def count(s, n, m):
         return 1
     if n < 0:
         return 0
-    if m <=0 and n >= 1:
+    if m <= 0 and n >= 1:
         return 1
     return count(s, n, m - 1) + count(s, n - s[m], m)
+
 
 if __name__=="__main__":
     start = time.time()
