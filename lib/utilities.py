@@ -454,7 +454,7 @@ def is_n_pandigital(n):
         return True
 
 
-def get_digits(n):
+def get_digits(n, rvrsd=True):
     """
     :param n: number 
     :return: returns the digits in number in revered order
@@ -464,7 +464,10 @@ def get_digits(n):
     for i in range(l):
         s.append(n % 10)
         n = int(n / 10)
-    return s
+    if rvrsd:
+        return s
+    else:
+        return s[::-1]
 
 
 def reverse(n):
