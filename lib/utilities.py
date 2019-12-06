@@ -1,6 +1,23 @@
 import math
 
 
+def combinations(n, r):
+    c = [] #[0] * nCr(n, r) number of elements of c should be nCr c (n!/(r!(n-r)!)
+    a = list(range(r))
+    i = 0
+    index = r - 1
+    while a[0] < n - r + 1:
+        while index > 0 and a[index] == n - r + 1:
+            index -= 1
+        #print(a)
+        c.append(list(a))
+        a[index] += 1
+        while index < r - 1:
+            a[index + 1] = a[index] + 1
+            index += 1
+    return c
+
+
 def matrix_multiply(A, B):
     """
     :param A: first matrix 
@@ -335,44 +352,47 @@ def calculate_weight(word):
 
 
 def factor(n):
+    if n == 0:
+        return 0
     ff = []
     lim = int(math.sqrt(n)) + 1
-    ff.append(1)
-    for d in range(2, lim):
+#    ff.append(1)
+#    ff.append(n)
+    for d in range(1, lim):
         if n % d == 0:
-            ff.append(int(n / d))
+            ff.append(n // d)
             ff.append(d)
     ff.sort()
     return ff, sum(ff)
 
 
-def prime_factors(n, sorted=False, distinct=True):
+def prime_factors(n, sorted=False, distinct=True, p=None):
     if n == 1:
-        return [1]
+        return {1: 1}
     elif n == 2:
-        return [2]
+        return {2: 1}
     elif n == 3:
-        return [3]
-    limit = int(math.sqrt(n))
-    p = n_primes(limit)
+        return {3: 1}
+    ff = {}
+    if n % 2 == 0:
+        ff[2] = 1
+        n = n // 2
+        while n % 2 == 0:
+            ff[2] += 1
+            n = n // 2
     if is_prime(n):
-        return [n]
-    ff = []
-    if n % p[0] == 0:
-        ff.append(p[0])
-        n = int(n / p[0])
-        if is_prime(n):
-            ff.append(n)
-    for primes in p:
-        if n % primes == 0 and primes not in ff:
-            ff.append(primes)
-            n = int(n / primes)
-            if n in p and (n not in ff != distinct):
-                ff.append(n)
-            elif is_prime(n) and (n not in ff != distinct):
-                ff.append(n)
-    if sorted:
-        ff.sort()
+        ff[n] = 1
+    else:
+        if not p:
+            p = primes_to(math.sqrt(n) + 1)
+        for primes in p[1::]:
+            if n % primes == 0 and primes not in ff:
+                ff[primes] = 1
+                n = n // primes
+                while n % primes == 0:
+                    ff[primes] += 1
+                    n = n // primes
+            n = n // primes
     return ff
 
 
@@ -643,9 +663,11 @@ def phi1(n, p=None):
         p = prime_factors(limit)
     _phi = n
     i = 0
+    if type(p) is dict:
+        p = list(p.keys())
     pr = p[i]
     while i < len(p) - 1 and pr * pr <= n:
-        if n % pr ==0:
+        if n % pr == 0:
             _phi = _phi - _phi / pr
             while n % pr == 0:
                 n = n / pr
@@ -695,6 +717,52 @@ def count(s, n, m):
     if m <= 0 and n >= 1:
         return 1
     return count(s, n, m - 1) + count(s, n - s[m], m)
+
+
+def roman_2_number(roman):
+    number = 0
+    last = 0
+    subtract = False
+    roman = roman[::-1]
+    for x in roman:
+        current = 0
+        if x == "M":
+            current = 1000
+        elif x == "D":
+            current = 500
+        elif x == "C":
+            current = 100
+        elif x == "L":
+            current = 50
+        elif x == "X":
+            current = 10
+        elif x == "V":
+            current = 5
+        elif x == "I":
+            current = 1
+        if current < last:
+            subtract = True
+            last = current
+        elif current > last:
+            subtract = False
+            last = current
+
+        if subtract:
+            number -= current
+        else:
+            number += current
+    return number
+
+
+def number_2_roman(number):
+    rules = {1000: "M", 900: "CM", 500: "D", 400: "CD", 100: "C", 90: "XC", 50: "L", 40: "XL", 10: "X", 9: "IX",
+             5: "V", 4: "IV", 1: "I"}
+    roman = ""
+    for i in range(len(rules)):
+        while number >= list(rules.keys())[i]:
+            number -= list(rules.keys())[i]
+            roman += rules[list(rules.keys())[i]]
+    return roman
 
 
 if __name__=="__main__":
@@ -765,5 +833,11 @@ if __name__=="__main__":
         print(i, n_phi(i), n_phi(i))
     p = primes_to(int(math.sqrt(87109)))
     print(phi1(87109))
-    print(prime_factors(87109))
+    #print(prime_factors(87109, p))
     print(phi2(10))
+    print(prime_factors(8))
+    print(roman_2_number("IX"))
+    print(roman_2_number("XI"))
+    print(number_2_roman(9))
+    print(number_2_roman(11))
+    print(combinations(4, 2))
