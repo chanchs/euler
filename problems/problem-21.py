@@ -1,7 +1,7 @@
 import lib.utilities as ut
 import time
 
-if __name__=="__main__":
+if __name__ == "__main__":
 
     start = time.time()
     n = 0
