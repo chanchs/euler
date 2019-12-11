@@ -18,6 +18,31 @@ def combinations(n, r):
     return c
 
 
+def is_permutation(n1, n2):
+    """
+    Return True if n1 is permutation of n2, else false. Assumes n1 and n2 have he same number of digits
+    :param n1:
+    :param n2:
+    :return:
+    """
+    if n1 == n2:
+        return False
+    l1 = int(math.log10(n1)) + 1
+    l2 = int(math.log10(n2)) + 1
+    if l1 != l2:
+        return False
+    digits = [0] * 10
+    for k in range(l1):
+        digits[n1 % 10] += 1
+        n1 = int(n1 / 10)
+        digits[n2 % 10] -= 1
+        n2 = int(n2 / 10)
+    for d in digits:
+        if d != 0:
+            return False
+    return True
+
+
 def matrix_multiply(A, B):
     """
     :param A: first matrix 
@@ -480,10 +505,13 @@ def get_digits(n, rvrsd=True):
     :return: returns the digits in number in revered order
     """
     s = []
-    l = int(math.log(n,10) + 1)
+    l = int(math.log10(n) + 1)
     for i in range(l):
+    #i = 0
+    #while i < l:
+        #i += 1
         s.append(n % 10)
-        n = int(n / 10)
+        n = n // 10
     if rvrsd:
         return s
     else:
@@ -694,6 +722,11 @@ def phi2(N):
     return _phi
 
 
+def is_square(n):
+    a = math.sqrt(n)
+    return a * a == n
+
+
 def n_phi(n):
     """
     returns a ratio of n to phi(n)
@@ -765,6 +798,36 @@ def number_2_roman(number):
     return roman
 
 
+def sum_of_proper_factors_excluding_n(n):
+    if n == 1:
+        return 1
+    return sum_of_proper_factors(n) - n
+
+
+def sum_of_proper_factors(n):
+    s = 1
+    p = 2
+
+    if n == 1:
+        return 1
+    while p * p <= n and n > 1:
+        if n % p == 0:
+            j = p * p
+            n = n // p
+
+            while n % p == 0:
+                j = j * p
+                n = n // p
+            s = s * (j - 1)
+            s = s // (p - 1)
+        if p == 2:
+            p = 3
+        else:
+            p += 2
+    if n > 1:
+        s = s * (n + 1)
+    return s
+
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -802,6 +865,9 @@ if __name__=="__main__":
     print("is_pandigital(8372377817263) {}".format(is_pandigital(8372377817263)))
     print("is_pandigital(3474002) {}".format(is_pandigital(3474002)))
     print("is_pandigital(987654321) {}".format(is_pandigital(987654321)))
+    print("{}".format(get_digits(1)))
+    print("{}".format(get_digits(10)))
+    print("{}".format(get_digits(2)))
     print("{}".format(get_digits(123456789)))
     print("{}".format(get_digits(8372377817263)))
     print("{}".format(get_digits(3474002)))
@@ -841,3 +907,5 @@ if __name__=="__main__":
     print(number_2_roman(9))
     print(number_2_roman(11))
     print(combinations(4, 2))
+    print(sum_of_proper_factors(220))
+    print(sum_of_proper_factors_excluding_n(220))
