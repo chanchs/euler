@@ -1,3 +1,6 @@
+# Reference https://books.google.com/books?id=D_XmfolL-IUC&printsec=frontcover&dq=isbn:0817645497&hl=en&newbks=1&newbks_redir=0&sa=X&ved=2ahUKEwiY9anO7MLmAhWPTt8KHeKgBOQQ6AEwAHoECAAQAg#v=onepage&q&f=false
+
+
 """
 Completed this in excel and the pinched the program from one of the solutions in the Forum.
 		2a	2a+1
