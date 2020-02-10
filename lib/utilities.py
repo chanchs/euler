@@ -1,15 +1,213 @@
 import math
+import random
+
+
+def power_set(members):
+    """
+    :param members:
+    :return:
+        (tuple OR set OR list) -> list of sets
+
+    Takes members, which is a tuple, set, or list representing the elements of
+    the set for which a power set is desired. Populates a list with all the
+    subsets of the group of members including the null set. Returns this list
+    of sets.
+
+    Note: in Python creating sets of sets is complicated and requires ordered
+        sets, so this implementation actually returns a list of sets, not a
+        set of sets.
+    """
+    subsets = [[]]
+    for member in members:
+        subsets.extend([subset + [member] for subset in subsets])
+    return [set(x) for x in subsets]  # Converts to list of sets.
+
+
+def has_unique_subset_sums(members):
+    """
+    (tuple OR set OR list) -> bool
+
+    Takes members, which is a tuple, set, or list representing the elements of
+    the set for which we would like to know if all subset sums are unique. The
+    parameter members will henceforth be referred to as a set for convenience.
+    Returns True if the number of non-empty subsets of members is equal to the
+    number of elements in a set containing the sum of each subset. Returns
+    False if the lengths differ, as this implies that at least two subsets
+    have the same sum.
+
+    :param members:
+    :return:
+    """
+
+    # Lists all subsets of members and removes the null set from consideration:
+    subsets = power_set(members)
+    del subsets[0]  # We are interested only in non-empty subsets.
+
+    # Creates a set containing the sums of all the subsets of members:
+    sums = set(sum(subset) for subset in subsets)
+    return len(sums) == 2 ** len(members) - 1
+
+
+def has_duplicates(members):
+    """
+    (tuple OR list) -> bool
+
+    Takes members, which is a tuple or list representing the elements of the
+    set for which a power set is desired. The parameter members will
+    henceforth be referred to as a set for convenience. Returns True if
+    members contains no duplicate values. Returns False otherwise.
+
+    :param members:
+    :return:
+    """
+
+    if len(members) != len(set(members)):
+        return True
+    else:
+        return False
+
+
+def is_special_sum_set(members):
+    """
+    (tuple OR set OR list) -> bool
+
+    Takes members, which is a tuple, set, or list representing the elements of
+    the set for which a power set is desired. The parameter members will
+    henceforth be referred to as a set for convenience. Returns True only if
+    these two conditions both hold:
+        1. The sum of each subset of members is unique. This is checked by
+            the function has_unique_subset_sums; and,
+        2. For any non-empty, disjoint subsets B and C, if B has more elements
+            than C, then sum(B) > sum(C).
+
+    Returns False otherwise.
+    :param members:
+    :return:
+    """
+    if (has_unique_subset_sums(members) and
+        larger_subsets_have_larger_sums(members)):
+            return True
+    else:
+        return False
+
+
+def larger_subsets_have_larger_sums(members):
+    """
+    (tuple OR set OR list) -> bool
+
+    Takes members, which is a tuple, set, or list representing the elements of
+    the set for which a power set is desired. The parameter members will
+    henceforth be referred to as a set for convenience. Checks that for any
+    non-empty, disjoint subsets B and C, if B has more elements than C, then
+    sum(B) > sum(C). Returns True if this condition holds. Returns False
+    otherwise.
+
+    This condition is checked by comparing extreme cases: we consider every
+    possible pair of disjoint subset sizes n and n - 1 for 1 < n. For each
+    pair of sizes we compare the smallest possible sum of a subset of size n
+    to the largest sum of a subset of size n - 1. (We increment n until any
+    further increase in n would imply that the two subsets would not be
+    disjoint. This occurs when n is equal to the integer portion of the length
+    of members divided by two.) If the sums of the subsets of size n are
+    larger than the sums of the subsets of size n - 1 in every case we know
+    that the condition holds and we return True. If any sum of the subset of
+    size n - 1 is larger than the associated sum of the subset of size n then
+    we have proven that there is at least pair of sizes for which the
+    condition does not hold and we return False.
+
+    For example, if members contains 7 elements we compare the sums of these
+    pairs of subsets:
+        i. The smallest-sum subset of size 2 vs. the largest-sum
+            subset of size 1;
+        ii. The smallest-sum subset of size 3 vs. the largest-sum
+            subset of size 2;
+        iii. The smallest-sum subset of size 4 vs. the largest-sum
+            subset of size 3.
+
+    :param members:
+    :return:
+    """
+    members_count = len(members)
+    sorted_members = sorted(members)  # Sorted to make indexing easier.
+    smallest_n_sum = sorted_members[0]  # Smallest sum of an n-member subset.
+    largest_n_minus_one_sum = 0  # Largest sum of an (n - 1)-member subset.
+
+    # Compares all n and n - 1 disjoint subset size pairs:
+    for index in range(members_count // 2):
+        # Adds next-largest item to smallest_n_sum:
+        smallest_n_sum += sorted_members[index + 1]
+
+        # Adds next-smallest item to largest_n_minus_one_sum:
+        largest_n_minus_one_sum += sorted_members[members_count - index - 1]
+
+        # Condition fails if any smaller subset doesn't have a smaller sum:
+        if smallest_n_sum <= largest_n_minus_one_sum:
+            return False
+
+    # Returns True if both conditions hold:
+    return True
+
+
+def dot_product(v1, v2):
+    if len(v1) != len(v2):
+        raise Exception("len(v1) != len(v2)")
+    s = 0
+    for n in range(len(v1)):
+        s += v1[n] * v2[n]
+    return s
+
+
+def cross_product(u, v):
+    """
+
+    :param u: [u0, u1]
+    :param v: [v0, v1]
+    :return: u X v
+    """
+    return u[0] * v[1] - u[1] * v[0]
+
+
+class Polynomial:
+    def __init__(self, degree=None, coefficients=None):
+        if not degree and not coefficients:
+            self.degree = 0
+            self.coefficients = []
+        elif degree and not coefficients:
+            self.degree = degree
+            self.coefficients = [0] * (degree + 1)
+        elif not degree and coefficients:
+            self.degree = len(coefficients) - 1
+            self.coefficients = coefficients
+        elif degree and coefficients:
+            if degree != len(coefficients) + 1:
+                raise Exception("Degree must be one size greater than the size of coefficients")
+            self.degree = degree
+            self.coefficients = coefficients
+
+    def get_coefficients(self):
+        return self.coefficients
+
+    def get_degree(self):
+        return self.degree
+
+    def get_ith_coefficient(self, i):
+        return self.coefficients[i]
+
+    def evaluate(self, x):
+        result = 0
+        for i in range(self.degree + 1):
+            result = result * x + self.get_ith_coefficient(i)
+        return result
 
 
 def combinations(n, r):
-    c = [] #[0] * nCr(n, r) number of elements of c should be nCr c (n!/(r!(n-r)!)
+    c = []  # [0] * nCr(n, r) number of elements of c should be nCr c (n!/(r!(n-r)!)
     a = list(range(r))
     i = 0
     index = r - 1
     while a[0] < n - r + 1:
         while index > 0 and a[index] == n - r + 1:
             index -= 1
-        #print(a)
         c.append(list(a))
         a[index] += 1
         while index < r - 1:
@@ -82,7 +280,7 @@ def matrix_exponentiation(M, n):
     :return: a matrix raised to n
     """
     assert n >= 0 and int(n) == n, "power has to be non-negative integer"
-    if(n == 0 or n == 1):
+    if n == 0 or n == 1:
         return
     A = identity(len(M))
     for i in range(n):
@@ -103,9 +301,16 @@ def n_th_fibonacci(n):
 
 def fibonacci_generative_to_n(n):
     a, b = 0, 1
-    while n>0:
+    while n > 0:
         yield a
-        a, b, n = b, a+b, n-1
+        a, b, n = b, a + b, n - 1
+
+
+def tetranacii_sequence(n):
+    a, b, c, d = 0, 0, 0, 1
+    while n > 0:
+        a, b, c, d, n = b, c, d, a + b + c + d, n - 1
+        yield d
 
 
 def sieve_of_eratosthenes(n):
@@ -119,7 +324,52 @@ def sieve_of_eratosthenes(n):
     return P, sorted({k: v for k, v in enumerate(P) if v is True})
 
 
-def is_prime(n):
+def is_prime(n, k=4):
+    """
+    This has a bug!!
+    1 is not a prime
+    All primes except 2 are odd
+    All primes greater than 3 can be written as 6k+/-1
+    Any number n can have only one prime factor greater than sqrt(n)
+    :param n: number to test
+    :param k: accuracy factor (higher is more accurate), if k = 0, use the original method else use miller rabin
+    :return: True or false based on if n is a prime or not
+    """
+    if n == 1:
+        return False
+    elif n < 0:
+        return False
+    elif 1 < n < 4:
+        return True
+    elif n % 2 == 0:
+        return False
+    elif n == 7: #or n == 9:
+        return True
+    elif n % 3 == 0:
+        return False
+    elif n % 5 == 0:
+        return False
+    else:
+        if k == 0:
+            r = int(math.floor(math.sqrt(n)))
+            d = 5
+            while d <= r:
+                if n % d == 0:
+                    return False
+                if n % (d + 2) == 0:
+                    return False
+                d += 6
+        else:
+            d = n - 1
+            while d % 2 == 0:
+                d = d // 2
+            for i in range(k):
+                if not miller_rabin_test(d, n):
+                    return False
+    return True
+
+
+def is_prime1(n):
     """
     1 is not a prime
     All primes except 2 are odd
@@ -154,23 +404,38 @@ def is_prime(n):
     return True
 
 
-def is_permutation(n1, n2):
-    if n1 == n2:
-        return False
-    l1 = int(math.log10(n1)) + 1
-    d1 = []
-    d2 = []
-    for k in range(l1):
-        d1.append(int(n1 % 10))
-        n1 = int(n1 / 10)
-        d2.append(int(n2 % 10))
-        n2 = int(n2 / 10)
-    d1.sort()
-    d2.sort()
-    if d1 == d2:
+def power(x, y, p):
+    """
+    Modular exponentiation
+    (x ^ y) mod p
+    :param x:
+    :param y:
+    :param p:
+    :return: (x ^ y) mod p
+    """
+    result = 1
+    x = x % p
+    while y > 0:
+        if y & 1:
+            result = (result * x) % p
+        y = y >> 1
+        x = (x * x) % p
+    return result
+
+
+def miller_rabin_test(d, n):
+    a = 2 + random.randint(1, n-4)
+    x = power(a, d, n)
+    if x == 1 or x == n - 1:
         return True
-    else:
-        return False
+    while d != n - 1:
+        x = (x * x) % n
+        d = d * 2
+        if x == 1:
+            return False
+        if x == n - 1:
+            return True
+    return False
 
 
 def n_primes(n):
@@ -376,49 +641,76 @@ def calculate_weight(word):
     return weight
 
 
-def factor(n):
+def factor(n, sort=True):
     if n == 0:
-        return 0
+        return [0], 0
     ff = []
     lim = int(math.sqrt(n)) + 1
-#    ff.append(1)
-#    ff.append(n)
     for d in range(1, lim):
         if n % d == 0:
             ff.append(n // d)
             ff.append(d)
-    ff.sort()
+    if sort:
+        ff.sort()
     return ff, sum(ff)
 
 
-def prime_factors(n, sorted=False, distinct=True, p=None):
+def prime_factors(n, number_of_factors=False, p=None):
+    if n == 0:
+        if number_of_factors:
+            return {0: 0}, 0
+        else:
+            return {0: 0}
     if n == 1:
-        return {1: 1}
+        if number_of_factors:
+            return {1: 1}, 1
+        else:
+            return {1: 1}
     elif n == 2:
-        return {2: 1}
+        if number_of_factors:
+            return {2: 1}, 1
+        else:
+            return {2: 1}
     elif n == 3:
-        return {3: 1}
+        if number_of_factors:
+            return {3: 1}, 1
+        else:
+            return {3: 1}
     ff = {}
-    if n % 2 == 0:
-        ff[2] = 1
-        n = n // 2
-        while n % 2 == 0:
-            ff[2] += 1
-            n = n // 2
+
     if is_prime(n):
         ff[n] = 1
+        if number_of_factors:
+            return ff, 1
+        else:
+            return ff
+
+    while n % 2 == 0:
+        if 2 not in ff:
+            ff[2] = 1
+        else:
+            ff[2] += 1
+        n = n // 2
+    if not p:
+        pr = primes_to(math.sqrt(n) + 1)
     else:
-        if not p:
-            p = primes_to(math.sqrt(n) + 1)
-        for primes in p[1::]:
-            if n % primes == 0 and primes not in ff:
-                ff[primes] = 1
-                n = n // primes
-                while n % primes == 0:
-                    ff[primes] += 1
-                    n = n // primes
-            n = n // primes
-    return ff
+        pr = [x for x in p if x <= math.sqrt(n) + 1 ]
+    for prms in pr[1::]:
+        while n % prms == 0:
+            if prms not in ff:
+                ff[prms] = 1
+            else:
+                ff[prms] += 1
+            n = n // prms
+    if n != 1:
+        ff[n] = 1
+    if not number_of_factors:
+        return ff
+    else:
+        ps = 1
+        for k in ff.keys():
+            ps *= ff[k] + 1
+        return ff, ps
 
 
 def is_pandigital(n):
@@ -426,17 +718,13 @@ def is_pandigital(n):
     s = [False] * 10
     if l > 9:
         return False
-    number = n
-    #print("n = {0}, l = {1}".format(n, l))
     for i in range(l):
         digit = n % 10
         n = int(n / 10)
-        #print(digit)
         if not s[digit]:
             s[digit] = True
         else:
             return False
-    #print("number = {0}, s = {1}".format(number, s))
     if False in s[1:]:
         return False
     else:
@@ -448,17 +736,13 @@ def is_09_pandigital(n):
     s = [False] * 10
     if l > 10:
         return False
-    number = n
-    #print("n = {0}, l = {1}".format(n, l))
     for i in range(l):
         digit = n % 10
         n = int(n / 10)
-        #print(digit)
         if not s[digit]:
             s[digit] = True
         else:
             return False
-    #print("number = {0}, s = {1}".format(number, s))
     if False in s:
         return False
     else:
@@ -504,12 +788,13 @@ def get_digits(n, rvrsd=True):
     :param n: number 
     :return: returns the digits in number in revered order
     """
+    if n == 0:
+        return [0]
+    if n < 0:
+        n *= -1
     s = []
     l = int(math.log10(n) + 1)
     for i in range(l):
-    #i = 0
-    #while i < l:
-        #i += 1
         s.append(n % 10)
         n = n // 10
     if rvrsd:
@@ -558,19 +843,109 @@ def convert_decimal_to_binary(n):
     return b
 
 
+def nCr_iterative(n, k):
+    """
+    Not tested
+    :param n:
+    :param k:
+    :return:
+    """
+    c = 1
+    if k > n - k:
+        k = n - k
+    for i in range(1, k + 1):
+        c = c / i * n % i * n / i
+    return c
+
+
 def nCr(n, r):
+    """
+    Combinations of n things taken r at a time
+    :param n:
+    :param r:
+    :return:
+    """
+    if r < 0 or r > n:
+        return 0
+    if r > n - r:
+        r = n - r
+    if r == 0 or n <= 1:
+        return 1
+    return nCr(n - 1, r) + nCr(n - 1, r - 1)
+
+
+def binomial_coefficient(n, k):
+    return nCr(n, k)
+
+
+#def nCr(n, r):
+#    if r > n:
+#        temp = r
+#        r = n
+#        n = temp
+#    return math.factorial(n) // math.factorial(r) // math.factorial(n - r)
+
+
+def nPr(n, r):
+    """
+    Permutations of n things r at a time
+    :param n:
+    :param r:
+    :return:
+    """
     if r > n:
-        temp = r
-        r = n
-        n = temp
-    return math.factorial(n) // math.factorial(r) // math.factorial(n - r)
+        return 0
+    else:
+        return math.factorial(n) // math.factorial(n - r)
+
+
+def partition_count(m, last=False):
+    """
+    :param m: number for which to find partition count
+    :return: an array with partition counts of all numbers up to m. If last is True will return the
+    partition count only for m.
+    """
+    m = m + 1
+    p = [1] * m
+    for i in range(1, m):
+        j = k = 1
+        s = 0
+        while j > 0:
+            j = i - (3 * k * k + k) // 2
+            if j >= 0:
+                s = s - (-1) ** k * p[j]
+            j = i - (3 * k * k - k) // 2
+            if j >= 0:
+                s = s - (-1) ** k * p[j]
+            k = k + 1
+        p[i] = s
+    if last:
+        return p[m - 1]
+    else:
+        return p
+
+
+def partition_array(a):
+    """
+    Partitions an array a and returns all combinations of partitions
+    :param a: an array
+    :return:
+    """
+    if len(a) == 1:
+        yield [a]
+        return
+    first = a[0]
+    for s in partition_array(a[1:]):
+        for n, sub_set in enumerate(s):
+            yield s[:n] + [[first] + sub_set] + s[n + 1:]
+        yield [[first]] + s
 
 
 def unique_partitions(n):
-    p = [[]]
+    p = [[n]]
     row = 0
     k = 0
-    p[row].append(n)
+    #p[row].append(n)
     while True:
         print(p)
         remaining_value = 0
@@ -616,6 +991,16 @@ def get_digital_sum(n):
     return s
 
 
+def convert_array_to_number(a):
+    l = len(a)
+    if l <= 0:
+        return 0
+    s = 0
+    for n in a:
+        s = 10 * s + n
+    return s
+
+
 def primes_to(n):
     """
     return primes starting from 2 less than or equal to n
@@ -651,7 +1036,7 @@ def primes_to(n):
 def phi(n, p=None):
     """
     Returns Eulers Totient function (This function has a bug)
-    :param n: number to calculate the totier for
+    :param n: number to calculate the totient for
     :param p: a prime array up to square root of n, if not provided will create one
     :return: the totient function
     """
@@ -807,14 +1192,13 @@ def sum_of_proper_factors_excluding_n(n):
 def sum_of_proper_factors(n):
     s = 1
     p = 2
-
+    count = 0
     if n == 1:
         return 1
     while p * p <= n and n > 1:
         if n % p == 0:
             j = p * p
             n = n // p
-
             while n % p == 0:
                 j = j * p
                 n = n // p
@@ -827,6 +1211,107 @@ def sum_of_proper_factors(n):
     if n > 1:
         s = s * (n + 1)
     return s
+
+
+# Python program for Kruskal's algorithm to find
+# Minimum Spanning Tree of a given connected,
+# undirected and weighted graph
+
+from collections import defaultdict
+
+
+# Class to represent a graph
+class Graph:
+
+    def __init__(self, vertices):
+        self.V = vertices  # No. of vertices
+        self.graph = []  # default dictionary
+        # to store graph
+
+    # function to add an edge to graph
+    def addEdge(self, u, v, w):
+        self.graph.append([u, v, w])
+
+        # A utility function to find set of an element i
+
+    # (uses path compression technique)
+    def find(self, parent, i):
+        if parent[i] == i:
+            return i
+        return self.find(parent, parent[i])
+
+        # A function that does union of two sets of x and y
+
+    # (uses union by rank)
+    def union(self, parent, rank, x, y):
+        xroot = self.find(parent, x)
+        yroot = self.find(parent, y)
+
+        # Attach smaller rank tree under root of
+        # high rank tree (Union by Rank)
+        if rank[xroot] < rank[yroot]:
+            parent[xroot] = yroot
+        elif rank[xroot] > rank[yroot]:
+            parent[yroot] = xroot
+
+            # If ranks are same, then make one as root
+        # and increment its rank by one
+        else:
+            parent[yroot] = xroot
+            rank[xroot] += 1
+
+    # The main function to construct MST using Kruskal's
+    # algorithm
+    def KruskalMST(self):
+
+        result = []  # This will store the resultant MST
+
+        i = 0  # An index variable, used for sorted edges
+        e = 0  # An index variable, used for result[]
+
+        # Step 1:  Sort all the edges in non-decreasing
+        # order of their
+        # weight.  If we are not allowed to change the
+        # given graph, we can create a copy of graph
+        self.graph = sorted(self.graph, key=lambda item: item[2])
+
+        parent = [];
+        rank = []
+
+        # Create V subsets with single elements
+        for node in range(self.V):
+            parent.append(node)
+            rank.append(0)
+
+            # Number of edges to be taken is equal to V-1
+        while e < self.V - 1:
+
+            # Step 2: Pick the smallest edge and increment
+            # the index for next iteration
+            u, v, w = self.graph[i]
+            i = i + 1
+            x = self.find(parent, u)
+            y = self.find(parent, v)
+
+            # If including this edge does't cause cycle,
+            # include it in result and increment the index
+            # of result for next edge
+            if x != y:
+                e = e + 1
+                result.append([u, v, w])
+                self.union(parent, rank, x, y)
+                # Else discard the edge
+
+        # print the contents of result[] to display the built MST
+        print
+        total_weight = 0
+        "Following are the edges in the constructed MST"
+        for u, v, weight in result:
+            # print str(u) + " -- " + str(v) + " == " + str(weight)
+            print("%d -- %d == %d" % (u, v, weight))
+            total_weight += weight
+        return result, total_weight
+
 
 if __name__=="__main__":
     print("hello world")
@@ -909,3 +1394,21 @@ if __name__=="__main__":
     print(combinations(4, 2))
     print(sum_of_proper_factors(220))
     print(sum_of_proper_factors_excluding_n(220))
+    print("hello")
+    for i in range(101):
+        if is_prime(i):
+            print("{} is prime".format(i))
+    print(partition_count(7))
+    print(partition_count(7, True))
+    [print(i, end=" ") for i in tetranacii_sequence(0)]
+    [print(i, end=" ") for i in tetranacii_sequence(4)]
+    print()
+    [print(i, end=" ") for i in tetranacii_sequence(7)]
+    print()
+    [print(i, end=" ") for i in tetranacii_sequence(50)]
+    a = [0, 1, 2, 3]
+    for p in partition_array(a):
+        print(p)
+        for n in p:
+            print(convert_array_to_number(list(n)))
+
