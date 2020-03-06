@@ -76,7 +76,68 @@ def check_partitions(m):
             n = n * 10 + m[j]
 
 
+def is_palindrome(n):
+    """
+    check if a number is palindrome, faster than above
+    :param n: the number to be checked
+    :return: true or false
+    """
+    d = int(math.pow(10, int(math.log10(n))))
+    while n != 0:
 
+        if 0 > n > 10:
+            break
+        leading = n // d
+        trailing = n % 10
+        if leading != trailing:
+            return False
+        n = (n % d) // 10
+        d = d // 100
+    return True
+
+
+def create_palindrome(n, odd):
+    p = n
+    if odd:
+        n = n // 10
+    while n > 0:
+        p = p * 10 + n % 10
+        n = n // 10
+    return p
+
+
+def generate_palindromes(n):
+    for j in range(2):
+        i = 1
+        while create_palindrome(i, j % 2) < n:
+            yield create_palindrome(i, j % 2)
+            i += 1
+
+
+def dummy_function(x, y, z):
+    return x * y * z
+
+
+def test_loop():
+    x = y = z = 1
+    while dummy_function(z, z, z) < 1000:
+        z += 1
+        y = z
+        while dummy_function(z, y, z) < 1000:
+            y += 1
+            x = y
+            while dummy_function(z, y, x) < 1000:
+                x += 1
+                print("x = {}, y = {}, z = {}, dummy_function = {}".format(x, y, z, dummy_function(z, y, x)))
+
+
+def test_loop1():
+    x = y = z = 1
+    for x in range(1, dummy_function(x, y, z)):
+        x += 1
+        y += 1
+        z += 1
+        print("hello")
 
 
 if __name__ == "__main__":
@@ -111,3 +172,31 @@ if __name__ == "__main__":
 
     #for p in x:
     #    print(p)
+    print("is 1234567890 palindrome? {}".format(is_palindrome(1234567890)))
+    print("is 123454321 palindrome? {}".format(is_palindrome(123454321)))
+    print("is 12344321 palindrome? {}".format(is_palindrome(12344321)))
+    print("is 91 * 99 palindrome? {}".format(is_palindrome(91 * 99)))
+    print("is 1 palindrome? {}".format(is_palindrome(1)))
+    print("is 11 palindrome? {}".format(is_palindrome(11)))
+    print("is 101 palindrome? {}".format(is_palindrome(101)))
+    print("is 111 palindrome? {}".format(is_palindrome(111)))
+    print("is 1001 palindrome? {}".format(is_palindrome(1001)))
+    print("is 1 palindrome? {}".format(is_palindrome(1)))
+    print("is 2 palindrome? {}".format(is_palindrome(2)))
+    print("is 5 palindrome? {}".format(is_palindrome(5)))
+    print("is 7 palindrome? {}".format(is_palindrome(7)))
+    print("is 9 palindrome? {}".format(is_palindrome(9)))
+    for p in generate_palindromes(10):
+        print(p)
+    #test_loop()
+    #test_loop1()
+    r = 100 * [1]
+    print(r)
+    for i in range(2, 100):
+        if r[i] == 1:
+            r[i] = i
+
+            for j in range(i + i, 100, i):
+                r[j] *= i
+
+    print(r)

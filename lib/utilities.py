@@ -1,5 +1,6 @@
 import math
 import random
+import time
 
 
 def power_set(members):
@@ -466,22 +467,38 @@ def n_primes(n):
     return p
 
 
+#def is_palindrome(n):
+#    """
+#    check if a number is palindrome
+#    :param n: the number to be checked
+#    :return: true or false
+#    """
+#    l = int(math.log10(n))
+#    num = n
+#    p = 0
+#    for i in range(l, -1, -1):
+#        p += int((num % 10)) * int(math.pow(10, i))
+#        num = num // 10
+#    if int(p) == int(n):
+#        return True
+#    else:
+#        return False
+
 def is_palindrome(n):
     """
-    check if a number is palindrome
+    check if a number is palindrome, faster than above
     :param n: the number to be checked
     :return: true or false
     """
-    l = int(math.log10(n))
-    num = n
-    p = 0
-    for i in range(l, -1, -1):
-        p += int((num % 10)) * int(math.pow(10, i))
-        num = num // 10
-    if int(p) == int(n):
-        return True
-    else:
-        return False
+    d = int(math.pow(10, int(math.log10(n))))
+    while n != 0:
+        leading = n // d
+        trailing = n % 10
+        if leading != trailing:
+            return False
+        n = (n % d) // 10
+        d = d // 100
+    return True
 
 
 def gcd_iterative(u, v):
@@ -1213,6 +1230,35 @@ def sum_of_proper_factors(n):
     return s
 
 
+def create_palindrome(n, odd):
+    p = n
+    if odd:
+        n = n // 10
+    while n > 0:
+        p = p * 10 + n % 10
+        n = n // 10
+    return p
+
+
+def rad(n, p):
+    r = 1
+    for i in range(len(p)):
+        if p[i] > n:
+            break
+        else:
+            if n % p[i] == 0:
+                r *= p[i]
+    return r
+
+
+def generate_palindromes(n):
+    for j in range(2):
+        i = 1
+        while create_palindrome(i, j % 2) < n:
+            yield create_palindrome(i, j % 2)
+            i += 1
+
+
 # Python program for Kruskal's algorithm to find
 # Minimum Spanning Tree of a given connected,
 # undirected and weighted graph
@@ -1313,6 +1359,7 @@ class Graph:
         return result, total_weight
 
 
+
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -1322,7 +1369,7 @@ if __name__=="__main__":
     print(P)
     #for i in P:
     #    print(i)
-    print("is 1234567890 verome? {}".format(is_palindrome(1234567890)))
+    print("is 1234567890 palindrome? {}".format(is_palindrome(1234567890)))
     print("is 123454321 palindrome? {}".format(is_palindrome(123454321)))
     print("is 12344321 palindrome? {}".format(is_palindrome(12344321)))
     print("is 91 * 99 palindrome? {}".format(is_palindrome(91 * 99)))
