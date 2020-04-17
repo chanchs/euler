@@ -1,6 +1,5 @@
 import math
 import random
-import time
 
 
 def power_set(members):
@@ -445,10 +444,7 @@ def n_primes(n):
     :param n: the number of primes to return
     :return: returns a list of primes
     """
-    p = []
-    p.append(2)
-    p.append(3)
-
+    p = [2, 3]
     m = p[-1]
     while True:
         if len(p) >= n:
@@ -466,23 +462,6 @@ def n_primes(n):
             p.append(m)
     return p
 
-
-#def is_palindrome(n):
-#    """
-#    check if a number is palindrome
-#    :param n: the number to be checked
-#    :return: true or false
-#    """
-#    l = int(math.log10(n))
-#    num = n
-#    p = 0
-#    for i in range(l, -1, -1):
-#        p += int((num % 10)) * int(math.pow(10, i))
-#        num = num // 10
-#    if int(p) == int(n):
-#        return True
-#    else:
-#        return False
 
 def is_palindrome(n):
     """
@@ -895,14 +874,6 @@ def binomial_coefficient(n, k):
     return nCr(n, k)
 
 
-#def nCr(n, r):
-#    if r > n:
-#        temp = r
-#        r = n
-#        n = temp
-#    return math.factorial(n) // math.factorial(r) // math.factorial(n - r)
-
-
 def nPr(n, r):
     """
     Permutations of n things r at a time
@@ -1259,6 +1230,17 @@ def generate_palindromes(n):
             i += 1
 
 
+def A(n):
+    if gcd1(n, 10) != 1:
+        return 0
+    x = k = 1
+    while x != 0:
+        x = (x * 10 + 1) % n
+        k += 1
+    return k
+
+
+
 # Python program for Kruskal's algorithm to find
 # Minimum Spanning Tree of a given connected,
 # undirected and weighted graph
@@ -1359,7 +1341,6 @@ class Graph:
         return result, total_weight
 
 
-
 if __name__=="__main__":
     print("hello world")
     print(n_th_fibonacci(12))
@@ -1458,4 +1439,7 @@ if __name__=="__main__":
         print(p)
         for n in p:
             print(convert_array_to_number(list(n)))
+    print("A(7) = {}".format(A(7)))
+    print("A(41) = {}".format(A(41)))
+
 
