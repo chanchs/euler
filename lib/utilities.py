@@ -1240,6 +1240,18 @@ def A(n):
     return k
 
 
+def repunit(n, b=10):
+    """
+
+    :param b: base default is 10
+    :param n: number of repunits
+    :return: number repunit
+    """
+    assert b >= 2, "b has to be greater than 2"
+    assert n >= 1, "n has to be equal to at least 1"
+    R = (pow(b, n) - 1) // (b - 1)
+    return int(R)
+
 
 # Python program for Kruskal's algorithm to find
 # Minimum Spanning Tree of a given connected,
@@ -1441,5 +1453,9 @@ if __name__=="__main__":
             print(convert_array_to_number(list(n)))
     print("A(7) = {}".format(A(7)))
     print("A(41) = {}".format(A(41)))
+    print("repunit 2 = {}".format(repunit(n=2)))
+    print("repunit 3 = {}".format(repunit(n=3)))
+    print("repunit 1000000 = {}".format(repunit(n=1000000)))
+
 
 
