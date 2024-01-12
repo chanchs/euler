@@ -1253,6 +1253,13 @@ def repunit(n, b=10):
     return int(R)
 
 
+def tens(n):
+    result = 1
+    while result <= n:
+        result *= 10
+    return result
+
+
 # Python program for Kruskal's algorithm to find
 # Minimum Spanning Tree of a given connected,
 # undirected and weighted graph
@@ -1455,7 +1462,8 @@ if __name__=="__main__":
     print("A(41) = {}".format(A(41)))
     print("repunit 2 = {}".format(repunit(n=2)))
     print("repunit 3 = {}".format(repunit(n=3)))
-    print("repunit 1000000 = {}".format(repunit(n=1000000)))
+    #print("repunit 1000000 = {}".format(repunit(n=1000000)))
+    print(tens(456))
 
 
 
