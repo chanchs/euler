@@ -7,8 +7,8 @@ if __name__=="__main__":
     for i in fibonacci_generative_to_n(35):
         if i < 4000000:
             print(i)
-            if i%2==0:
-                sum +=  i
+            if i%2 == 0:
+                sum += i
         else:
             break
 
