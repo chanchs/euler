@@ -1096,7 +1096,7 @@ def phi2(N):
 
 
 def is_square(n):
-    a = math.sqrt(n)
+    a = round(math.sqrt(n))
     return a * a == n
 
 
@@ -1240,6 +1240,25 @@ def A(n):
     return k
 
 
+def repunit(n, b=10):
+    """
+
+    :param b: base default is 10
+    :param n: number of repunits
+    :return: number repunit
+    """
+    assert b >= 2, "b has to be greater than 2"
+    assert n >= 1, "n has to be equal to at least 1"
+    R = (pow(b, n) - 1) // (b - 1)
+    return int(R)
+
+
+def tens(n):
+    result = 1
+    while result <= n:
+        result *= 10
+    return result
+
 
 # Python program for Kruskal's algorithm to find
 # Minimum Spanning Tree of a given connected,
@@ -1339,6 +1358,69 @@ class Graph:
             print("%d -- %d == %d" % (u, v, weight))
             total_weight += weight
         return result, total_weight
+
+
+def digit_by_digit_sqrt(number, decimal_places=5):
+    # Step 1: Prepare the number by grouping into pairs (e.g., 123 -> '01', '23')
+    num_str = str(number)
+    if '.' in num_str:
+        integer_part, fractional_part = num_str.split('.')
+    else:
+        integer_part, fractional_part = num_str, ""
+
+    # Ensure even number of digits in the integer part
+    if len(integer_part) % 2 != 0:
+        integer_part = '0' + integer_part
+
+    # Create groups of pairs
+    groups = [int(integer_part[i:i + 2]) for i in range(0, len(integer_part), 2)]
+
+    # Append fractional zeros for requested precision
+    # Each pair of zeros after the decimal provides 1 decimal place in the root
+    fractional_groups = []
+    if fractional_part:
+        if len(fractional_part) % 2 != 0: fractional_part += '0'
+        fractional_groups = [int(fractional_part[i:i + 2]) for i in range(0, len(fractional_part), 2)]
+
+    groups.extend(fractional_groups)
+    while len(groups) < (len(integer_part) // 2 + decimal_places):
+        groups.append(0)
+
+    # Core Algorithm
+    root = 0
+    remainder = 0
+    result_digits = []
+
+    #print(f"Step-by-step Calculation for sqrt({number}):\n")
+
+    for i, group in enumerate(groups):
+        # Bring down the next group
+        current_val = remainder * 100 + group
+
+        # Find the largest digit x such that (20 * root + x) * x <= current_val
+        p = root
+        x = 0
+        for candidate_x in range(1, 10):
+            if (20 * p + candidate_x) * candidate_x <= current_val:
+                x = candidate_x
+            else:
+                break
+
+        # Calculate subtraction and update root
+        y = (20 * p + x) * x
+        remainder = current_val - y
+        root = root * 10 + x
+        result_digits.append(str(x))
+
+        # Display Step
+        step_label = f"Group {i + 1} ({group:02d})"
+        #print(f"{step_label:>15}: Current Val: {current_val:<8} | Tried x={x} -> {y} | Remainder: {remainder}")
+
+    # Format output with decimal point
+    int_len = len(integer_part) // 2
+    final_root = "".join(result_digits[:int_len]) + "." + "".join(result_digits[int_len:])
+    return final_root
+
 
 
 if __name__=="__main__":
@@ -1441,5 +1523,9 @@ if __name__=="__main__":
             print(convert_array_to_number(list(n)))
     print("A(7) = {}".format(A(7)))
     print("A(41) = {}".format(A(41)))
-
-
+    print("repunit 2 = {}".format(repunit(n=2)))
+    print("repunit 3 = {}".format(repunit(n=3)))
+    #print("repunit 1000000 = {}".format(repunit(n=1000000)))
+    print(tens(456))
+    print(f"is 4 a perfect square? {is_square(4)}")
+    print(digit_by_digit_sqrt(2, 50))
